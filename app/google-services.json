@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "15167446969",
+    "firebase_url": "https://holaorder-default-rtdb.firebaseio.com",
+    "project_id": "holaorder",
+    "storage_bucket": "holaorder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15167446969:android:19c0b5e58b87b82f6ca068",
+        "android_client_info": {
+          "package_name": "com.example.holaorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15167446969-dba96tud5gct43c8jo9bofqrh5gnhn7t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk-jnxc624Jugfc1Lawk8Bh3Zxx0HjA9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15167446969-dba96tud5gct43c8jo9bofqrh5gnhn7t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
