@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.example.holaorder.Common.Common;
 import com.example.holaorder.Model.User;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import com.example.sportshop.Common.Common;
+import com.example.sportshop.Model.User;
+import com.google.firebase.database.*;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -38,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(com.google.firebase.database.R.layout.activity_profile);
            /* tvPhone = findViewById(R.id.tvPhone);
             tvName = findViewById(R.id.tvNam);*/
@@ -46,7 +53,17 @@ public class ProfileActivity extends AppCompatActivity {
             edtPhone = findViewById(com.google.firebase.database.R.id.edtPhone);
             edtName = findViewById(com.google.firebase.database.R.id.edtName);
             btnEdit = findViewById(com.google.firebase.database.R.id.btnEdit);
-            tv_Order = findViewById(com.google.firebase.database.R.id.tvMyOrder);
+
+        setContentView(R.layout.activity_profile);
+           /* tvPhone = findViewById(R.id.tvPhone);
+            tvName = findViewById(R.id.tvNam);*/
+            imgUser = findViewById(R.id.imgUser);
+            edtEmail = findViewById(R.id.edtEmail);
+            edtPhone = findViewById(R.id.edtPhone);
+            edtName = findViewById(R.id.edtName);
+            btnEdit = findViewById(R.id.btnEdit);
+            tv_Order = findViewById(R.id.tvMyOrder);
+
             User user = Common.currentUser;
             /*tvPhone.setText(user.getPhone());
             tvName.setText(user.getName());*/

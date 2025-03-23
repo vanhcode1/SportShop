@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/border_login"
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="57dp"
+        android:text="Sign In"
+        android:textColor="#FFFFFF"
+
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="369dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="22dp"
+        android:text="Experience the best services at HolaOrder"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <EditText
+        android:id="@+id/edtUsername"
+        android:layout_width="330dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/input"
+        android:backgroundTint="#f5f5f5"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="Username"
+        android:inputType="textPersonName"
+        android:paddingStart="30dp"
+        android:textColor="#333333"
+        android:textColorHint="#333333"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="330dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/input"
+        android:backgroundTint="#f5f5f5"
+        android:ems="10"
+        android:fontFamily="sans-serif-medium"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:paddingStart="30dp"
+        android:textColor="#333333"
+        android:textColorHint="#333333"
+        app:layout_constraintEnd_toStartOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/edtUsername" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView6"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Forget Password?"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/btn_signin"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/view"-->
+    <!--        app:layout_constraintHorizontal_bias="0.862"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/view"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/edtPassword"-->
+    <!--        app:layout_constraintVertical_bias="0.355" />-->
+
+    <LinearLayout
+        android:id="@+id/linear_layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtPassword"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword">
+
+        <com.rey.material.widget.CheckBox
+            android:id="@+id/remember_me_chkb"
+            style="@style/Material.Drawable.CheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical"
+            android:text="Remember me"
+            android:textColor="#868484"
+            android:textSize="13sp"
+            app:cbd_strokeColor="#868484"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/forget_password_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:text="Forget Password?"
+            android:textColor="#868484"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:layout_width="330dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="92dp"
+        android:background="@drawable/button_black"
+        android:backgroundTintMode="@color/black"
+        android:text="Sign In"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+    <Button
+        android:id="@+id/btn_seller_SI"
+        android:layout_width="330dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_black"
+        android:text="Wants to become a Seller"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/btn_signin"
+        app:layout_constraintVertical_bias="0.5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
