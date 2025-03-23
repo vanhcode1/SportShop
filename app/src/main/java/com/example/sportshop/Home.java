@@ -21,12 +21,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.holaorder.Common.Common;
-import com.example.holaorder.Interface.ItemClickListener;
-import com.example.holaorder.Model.Category;
-import com.example.holaorder.Model.Food;
-import com.example.holaorder.ViewHolder.CategoryViewHolder;
-import com.example.holaorder.ViewHolder.FoodViewHolder;
+import com.example.sportshop.Common.Common;
+import com.example.sportshop.Interface.ItemClickListener;
+import com.example.sportshop.Model.Category;
+import com.example.sportshop.Model.Sport;
+import com.example.sportshop.ViewHolder.CategoryViewHolder;
+import com.example.sportshop.ViewHolder.SportViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -45,7 +45,7 @@ public class Home extends AppCompatActivity {
     DatabaseReference table_product;
     TextView textItem;
     ImageView imageUser;
-    private List<Food> foodList;
+    private List<Sport> foodList;
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
 
@@ -144,7 +144,7 @@ public class Home extends AppCompatActivity {
                 categoryViewHolder.tvCategoryName.setText(category.getName());
                 Picasso.get().load(category.getImage()).into(categoryViewHolder.imgCategory);
                 Category clickItem = category;
-                Log.d("Food", category.toString());
+                Log.d("Sport", category.toString());
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -171,9 +171,9 @@ public class Home extends AppCompatActivity {
         }
 
 
-        FirebaseRecyclerOptions<Food> options =
-                new FirebaseRecyclerOptions.Builder<Food>()
-                        .setQuery(qrr, Food.class)
+        FirebaseRecyclerOptions<Sport> options =
+                new FirebaseRecyclerOptions.Builder<Sport>()
+                        .setQuery(qrr, Sport.class)
                         .build();
 
         GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
@@ -182,24 +182,24 @@ public class Home extends AppCompatActivity {
         recyclerViewPopularList.setLayoutManager(layoutManagerGrid);
 
 
-        FirebaseRecyclerAdapter<Food, FoodViewHolder> adapter = new FirebaseRecyclerAdapter<Food, FoodViewHolder>(options) {
+        FirebaseRecyclerAdapter<Sport, SportViewHolder> adapter = new FirebaseRecyclerAdapter<Sport, SportViewHolder>(options) {
             @NonNull
             @Override
-            public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public SportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                FoodViewHolder holder = new FoodViewHolder(view);
+                SportViewHolder holder = new SportViewHolder(view);
                 return holder;
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull FoodViewHolder foodViewHolder, int position, @NonNull Food food) {
+            protected void onBindViewHolder(@NonNull SportViewHolder foodViewHolder, int position, @NonNull Sport food) {
                 String foodId = getRef(position).getKey();
                 foodViewHolder.tvFoodName.setText(food.getName());
                 Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
                 foodViewHolder.tvPrice.setText(food.getPrice());
                 foodViewHolder.rate.setRating(Float.parseFloat(food.getRate()));
-                Food clickItem = food;
-                Log.d("Food", food.toString());
+                Sport clickItem = food;
+                Log.d("Sport", food.toString());
 
                 foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -227,17 +227,4 @@ public class Home extends AppCompatActivity {
         startActivity(productListIntent);
 
     }
-
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//        if (firebaseUser!=null){
-//            Intent intent = new Intent(Home.this, SellerHomeActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(intent);
-//            finish();
-//        }
-//    }
 }
