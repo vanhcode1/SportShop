@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat.Light.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+
+    tools:context=".CartActivity">
+
+    <LinearLayout
+        style="@style/Theme.AppCompat.Light.NoActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/border_cartview"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="OrderShipping"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/tv_Name_OS"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/input"
+            android:ems="10"
+            android:hint="Name"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/tv_Phone_OS"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/input"
+            android:ems="10"
+            android:hint="Phone"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/tv_Address_OS"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/input"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/tv_City_OS"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/input"
+            android:ems="10"
+            android:hint="City"
+            android:inputType="textPersonName"
+            android:paddingLeft="15dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_login"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_Sub_OS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Subtotal"
+            android:textColor="#676565"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_Ship_OS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Shipping"
+            android:textColor="#676565"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="380dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="#5F5F5F" />
+
+        <TextView
+            android:id="@+id/tv_Total_OS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:text="Total"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_OK_OS"
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/button_black"
+            android:text="Confirm"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

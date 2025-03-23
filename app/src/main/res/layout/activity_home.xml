@@ -61,8 +61,11 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textHello"
+                    app:layout_constraintVertical_bias="0.384" />
+
                     app:layout_constraintVertical_bias="0.384"
                     tools:ignore="MissingClass" />
+
 
                 <EditText
                     android:id="@+id/searchHome"

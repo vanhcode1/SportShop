@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="app_name">SportShop</string>
+
     <string name="app_name">HolaOrder</string>
     <string name="title_activity_homepage">homepage</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
