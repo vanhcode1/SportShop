@@ -14,13 +14,8 @@
                 android:title="@string/nav_cart" />
 
         <item
-                android:id="@+id/nav_type"
-                android:icon="@drawable/baseline_favorite_24"
-                android:onClick="favorite"
-                android:title="@string/nav_type" />
-        <item
                 android:id="@+id/nav_food"
-                android:onClick="listFoods"
+                android:onClick="listProducts"
                 android:icon="@drawable/baseline_sport_24"
                 android:title="@string/nav_sport" />
 

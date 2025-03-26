@@ -1,9 +1,4 @@
-package com.example.holaorder;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.sportshop;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -15,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.holaorder.Model.Cart;
-import com.example.holaorder.Prevalent.Prevalent;
-import com.example.holaorder.ViewHolder.CartViewHolder;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sportshop.Model.Cart;
+import com.example.sportshop.Prevalent.Prevalent;
+import com.example.sportshop.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,8 +32,6 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button OrderBtn ;
-    private TextView txtTotalAmount;
-    DatabaseReference table_cart;
     private int totalPrice = 0;
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,27 +39,14 @@ public class CartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        table_cart = database.getReference("CartList")
-//                .child("CartView")
-//                .child(Prevalent.currentOnlineUser.getPhone())
-//                .child("Foods");
-
         recyclerView = (RecyclerView) findViewById(R.id.rv_cart);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-
 
         loadCart();
 
         OrderBtn = (Button) findViewById(R.id.btn_order_C);
-//        txtTotalAmount = (TextView) findViewById(R.id.tv_total_C);
-
 
     }
 
@@ -74,7 +58,7 @@ public class CartActivity extends AppCompatActivity {
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartListRef.child("CartView")
                                 .child(Prevalent.currentOnlineUser.getPhone())
-                                .child("Foods"), Cart.class)
+                                .child("Products"), Cart.class)
                         .build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
@@ -91,25 +75,25 @@ public class CartActivity extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder holder, int position, @NonNull Cart model) {
-                String foodId = getRef(position).getKey();
+                String productId = getRef(position).getKey();
                 Cart clickItem = model;
                 Log.d("My App", model.toString());
 
-                Picasso.get().load(model.getImage()).into(holder.imgFood);
-                holder.tvFoodName.setText(model.getName());
+                Picasso.get().load(model.getImage()).into(holder.imgProduct);
+                holder.tvProductName.setText(model.getName());
                 holder.tvPrice.setText("Price: " + model.getPrice() + "$");
                 holder.tvQuantity.setText("Quantity: " + model.getQuantity());
 
 
                 //TotalPrice
-                int totalPriceOfPFood = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
-                totalPrice = totalPrice + totalPriceOfPFood;
+                int totalPriceOfProduct = ((Integer.valueOf(model.getPrice()))) * Integer.valueOf(model.getQuantity());
+                totalPrice = totalPrice + totalPriceOfProduct;
 
                 OrderBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(CartActivity.this, OrderActivity.class);
-                        intent.putExtra("totalPriceOfPFood",totalPriceOfPFood);
+                        intent.putExtra("totalPriceOfProduct",totalPriceOfProduct);
                         intent.putExtra("totalPrice", totalPrice);
                         startActivity(intent);
                     }
@@ -132,14 +116,14 @@ public class CartActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int i) {
                                 if (i == 0) {
                                     Intent intent = new Intent(CartActivity.this, DetailSport.class);
-                                    intent.putExtra("FoodId", foodId);
+                                    intent.putExtra("ProductId", productId);
                                     startActivity(intent);
                                 }
                                 if (i == 1) {
                                     cartListRef.child("CartView")
                                             .child(Prevalent.currentOnlineUser.getPhone())
-                                            .child("Foods")
-                                            .child(foodId)
+                                            .child("Products")
+                                            .child(productId)
                                             .removeValue()
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override

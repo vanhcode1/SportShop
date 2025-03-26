@@ -1,17 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.application")
     id("com.google.gms.google-services")
 
 }
 
 android {
     namespace = "com.example.sportshop"
-    compileSdk = 34
+    compileSdk = 35
+
+    dataBinding {
+        enable = true
+    }
 
     defaultConfig {
         applicationId = "com.example.sportshop"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -21,61 +25,39 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
-
-
-    implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-database")
-    implementation("com.firebaseui:firebase-ui-database:8.0.2")
-    implementation("com.squareup.picasso:picasso:2.71828")
-
-
-    implementation(libs.appcompat)
-
-    implementation(libs.material)
-    implementation(libs.activity)
-    implementation(libs.constraintlayout)
-//    implementation(libs.firebase.database)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
-
-    implementation("com.squareup.picasso:picasso:2.71828")
-    implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-storage")
-    implementation("com.google.firebase:firebase-firestore")
-    implementation("androidx.lifecycle:livedata-ktx")
-    implementation("androidx.lifecycle:viewmodel-ktx")
-    implementation("androidx.navigation:fragment")
-    implementation("androidx.navigation:ui")
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-core")
-    implementation("info.hoang8f:fbutton")
-    implementation("com.rengwuxian.materialedittext:library")
-    implementation("com.jaredrummler:material-spinner")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.firebaseui:firebase-ui-database")
-    implementation("com.github.bumptech.glide:glide")
-    annotationProcessor("com.github.bumptech.glide:compiler")
-    implementation("com.google.code.gson:gson")
-    implementation("me.relex:circleindicator")
-    implementation("de.hdodenhof:circleimageview")
-    implementation("com.google.android.gms:play-services-auth")
-    implementation("com.github.rey5137:material")
-    implementation("io.github.pilgr:paperdb")
+    implementation("com.google.firebase:firebase-auth:21.1.0")
+    implementation("com.google.firebase:firebase-storage:20.1.0")
+    implementation("com.google.firebase:firebase-firestore:24.6.1")
+    implementation("com.google.firebase:firebase-database-ktx:20.2.2")
+    implementation("com.google.firebase:firebase-core:21.1.1")
+    implementation("com.firebaseui:firebase-ui-database:8.0.0")
+
+    implementation("com.squareup.picasso:picasso:2.71828")
+    implementation("com.google.android.material:material:1.8.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    implementation("com.github.rey5137:material:1.3.1")
+    implementation("io.github.pilgr:paperdb:2.7.2")
+
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
 }

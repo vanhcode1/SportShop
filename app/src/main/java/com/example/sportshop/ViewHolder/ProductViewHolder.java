@@ -1,30 +1,32 @@
-package com.example.holaorder.ViewHolder;
+package com.example.sportshop.ViewHolder;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.holaorder.Interface.ItemClickListener;
-import com.example.holaorder.ListProduct;
-import com.example.holaorder.R;
+
+import com.example.sportshop.Interface.ItemClickListener;
+import com.example.sportshop.R;
+
 import org.jetbrains.annotations.NotNull;
 
-public class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView tvFoodName;
+public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public TextView tvProductName;
     public TextView tvPrice;
-    public ImageView imgFood;
+    public ImageView imgProduct;
     public RatingBar rate;
     public Button btn;
     private ItemClickListener itemClickListener;
 
-    public FoodViewHolder(@NonNull @NotNull View itemView) {
+    public ProductViewHolder(@NonNull @NotNull View itemView) {
         super(itemView);
-        tvFoodName = itemView.findViewById(R.id.title);
+        tvProductName = itemView.findViewById(R.id.title);
         tvPrice = itemView.findViewById(R.id.fee);
-        imgFood = itemView.findViewById(R.id.pic);
+        imgProduct = itemView.findViewById(R.id.pic);
         rate = itemView.findViewById(R.id.ratingBar1);
         btn= itemView.findViewById(R.id.addBtn);
         itemView.setOnClickListener(this);

@@ -1,6 +1,6 @@
 package com.example.sportshop.Prevalent;
 
-import com.example.holaorder.Model.User;
+import com.example.sportshop.Model.User;
 
 public class Prevalent {
     public static User currentOnlineUser;

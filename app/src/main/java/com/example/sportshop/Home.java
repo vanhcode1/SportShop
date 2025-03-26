@@ -1,58 +1,29 @@
 package com.example.sportshop;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportshop.Common.Common;
-import com.example.sportshop.Interface.ItemClickListener;
-import com.example.sportshop.Model.Category;
-import com.example.sportshop.Model.Sport;
-import com.example.sportshop.ViewHolder.CategoryViewHolder;
-import com.example.sportshop.ViewHolder.SportViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 public class Home extends AppCompatActivity {
-    Context context;
     DatabaseReference table_category;
     DatabaseReference table_product;
-    TextView textItem;
-    ImageView imageUser;
-    private List<Sport> foodList;
-    private RecyclerView.Adapter adapter, adapter2;
-    private RecyclerView recyclerViewCaregoryList, recyclerViewPopularList;
+    private ConstraintLayout btnAllProduct;
 
-    private ConstraintLayout btnAllFood;
-    //Search
     EditText searchHome;
-    @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,26 +31,19 @@ public class Home extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         table_category = database.getReference("Category");
-        table_product = database.getReference("Foods");
-        DatabaseReference table_product = database.getReference("Product");
-        imageUser = findViewById(R.id.imageUser);
+        table_product = database.getReference("Products");
 
         ((TextView) findViewById(R.id.textHello)).setText("Hello, " + Common.currentUser.getName());
-        Picasso.get().load(Common.currentUser.getImage()).into(imageUser);
-        recyclerViewCaregory();
-        recyclerViewPopular("");
 
+        btnAllProduct = (ConstraintLayout) findViewById(R.id.allProduct);
 
-        btnAllFood = (ConstraintLayout) findViewById(R.id.allFood);
-
-        btnAllFood.setOnClickListener(new View.OnClickListener() {
+        btnAllProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent product = new Intent(Home.this, ListProduct.class);
                 startActivity(product);
             }
         });
-
 
         searchHome = findViewById(R.id.searchHome);
         searchHome.setOnClickListener(new View.OnClickListener() {
@@ -88,143 +52,23 @@ public class Home extends AppCompatActivity {
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                // Intent sang Activity khác
                 Intent intent = new Intent(Home.this, SearchActivity.class);
                 startActivity(intent);
             }
         });
 
-        DatabaseReference foodsRef = database.getReference("Foods");
-
-        foodsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference productsRef = database.getReference("Products");
+        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int count = (int) dataSnapshot.getChildrenCount();
-                TextView textView = findViewById(R.id.number_Food);
-                textView.setText(count + " Foods");
+                TextView textView = findViewById(R.id.number_Product);
+                textView.setText(count + " Products");
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-
-        imageUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Home.this, ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
-    }
-
-    private void recyclerViewCaregory() {
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewCaregoryList = findViewById(R.id.recyclerView);
-        recyclerViewCaregoryList.setLayoutManager(linearLayoutManager);
-
-        FirebaseRecyclerOptions<Category> options =
-                new FirebaseRecyclerOptions.Builder<Category>()
-                        .setQuery(table_category, Category.class)
-                        .build();
-
-        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
-            @NonNull
-            @Override
-            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
-                CategoryViewHolder holder = new CategoryViewHolder(view);
-                return holder;
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int position, @NonNull Category category) {
-                categoryViewHolder.tvCategoryName.setText(category.getName());
-                Picasso.get().load(category.getImage()).into(categoryViewHolder.imgCategory);
-                Category clickItem = category;
-                Log.d("Sport", category.toString());
-                categoryViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        String selectedCategory = category.getName();
-                        recyclerViewPopular(selectedCategory.isEmpty() ? "" : selectedCategory);
-                        Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        };
-        recyclerViewCaregoryList.setAdapter(adapter);
-        adapter.startListening();
-    }
-
-    private void recyclerViewPopular(String category) {
-        //FirebaseDatabase database = FirebaseDatabase.getInstance();
-        //DatabaseReference table_product = database.getReference("Foods");
-        Query qrr;
-        if (category.isEmpty()) {
-            qrr = table_product;
-            qrr = qrr.limitToFirst(4).orderByChild("randomField");
-        } else {
-            qrr = table_product.orderByChild("CategoryId").equalTo(category);
-        }
-
-
-        FirebaseRecyclerOptions<Sport> options =
-                new FirebaseRecyclerOptions.Builder<Sport>()
-                        .setQuery(qrr, Sport.class)
-                        .build();
-
-        GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.HORIZONTAL, false);
-        //LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewPopularList = findViewById(R.id.recyclerView2);
-        recyclerViewPopularList.setLayoutManager(layoutManagerGrid);
-
-
-        FirebaseRecyclerAdapter<Sport, SportViewHolder> adapter = new FirebaseRecyclerAdapter<Sport, SportViewHolder>(options) {
-            @NonNull
-            @Override
-            public SportViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent,false);
-                SportViewHolder holder = new SportViewHolder(view);
-                return holder;
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull SportViewHolder foodViewHolder, int position, @NonNull Sport food) {
-                String foodId = getRef(position).getKey();
-                foodViewHolder.tvFoodName.setText(food.getName());
-                Picasso.get().load(food.getImage()).into(foodViewHolder.imgFood);
-                foodViewHolder.tvPrice.setText(food.getPrice());
-                foodViewHolder.rate.setRating(Float.parseFloat(food.getRate()));
-                Sport clickItem = food;
-                Log.d("Sport", food.toString());
-
-                foodViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(Home.this, DetailSport.class);
-                        intent.putExtra("FoodId", foodId);
-                        startActivity(intent);
-                    }
-                });
-                foodViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(Home.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-        };
-        recyclerViewPopularList.setAdapter(adapter);
-        adapter.startListening();
-    }
-
-    public void viewAllProducts(View view) {
-        Intent productListIntent = new Intent(Home.this, ListProduct.class);
-        startActivity(productListIntent);
-
     }
 }
