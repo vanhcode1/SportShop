@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.holaorder.Model.Food;
-import com.example.holaorder.Prevalent.Prevalent;
+import com.example.sportshop.Model.Product;
+import com.example.sportshop.Prevalent.Prevalent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -23,8 +23,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.HashMap;
 
 public class DetailSport extends AppCompatActivity {
@@ -38,21 +36,21 @@ public class DetailSport extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.google.firebase.database.R.layout.activity_detail_sport);
+        setContentView(R.layout.activity_detail_sport);
 
-        sportId = getIntent().getStringExtra("FoodId");
+        sportId = getIntent().getStringExtra("ProductId");
 
-        addToCartBtn = findViewById(com.google.firebase.database.R.id.addToCart_Dt);
-        btnDecrease = findViewById(com.google.firebase.database.R.id.btn_decrease);
-        btnIncrease = findViewById(com.google.firebase.database.R.id.btn_increase);
-        edtQuantity = findViewById(com.google.firebase.database.R.id.edt_quantity);
-        fImg = findViewById(com.google.firebase.database.R.id.img_fDetail);
-        fName = findViewById(com.google.firebase.database.R.id.txtFoodName);
-        fPrice = findViewById(com.google.firebase.database.R.id.price);
-        fDes = findViewById(com.google.firebase.database.R.id.txtDescription);
-        fRate = findViewById(com.google.firebase.database.R.id.ratingBar_Detail);
+        addToCartBtn = findViewById(R.id.addToCart_Dt);
+        btnDecrease = findViewById(R.id.btn_decrease);
+        btnIncrease = findViewById(R.id.btn_increase);
+        edtQuantity = findViewById(R.id.edt_quantity);
+        fImg = findViewById(R.id.img_fDetail);
+        fName = findViewById(R.id.txtProductName);
+        fPrice = findViewById(R.id.price);
+        fDes = findViewById(R.id.txtDescription);
+        fRate = findViewById(R.id.ratingBar_Detail);
 
-        getFoodDetails(sportId);
+        getProductDetails(sportId);
 
         btnDecrease.setOnClickListener(v -> {
             int quantity = Integer.parseInt(edtQuantity.getText().toString());
@@ -72,42 +70,29 @@ public class DetailSport extends AppCompatActivity {
     }
 
     private void addToCartList() {
-        String saveCurrentTime, saveCurrentDate;
-
-        Calendar calForDate = Calendar.getInstance();
-        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-        saveCurrentDate = currentDate.format(calForDate.getTime());
-
-        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentTime.format(calForDate.getTime());
 
         DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("CartList");
 
         final HashMap<String, Object> cartMap = new HashMap<>();
-        cartMap.put("FoodId", sportId);
+        cartMap.put("ProductId", sportId);
         cartMap.put("name", "");
         cartMap.put("price", "");
-        cartMap.put("rate", 0);
-        cartMap.put("date", saveCurrentDate);
-        cartMap.put("time", saveCurrentTime);
         cartMap.put("quantity", edtQuantity.getText().toString());
-        cartMap.put("discount", "");
         cartMap.put("Image", "");
 
-        DatabaseReference foodRef = FirebaseDatabase.getInstance().getReference().child("Foods").child(sportId);
-        foodRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Products").child(sportId);
+        productRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    Food food = dataSnapshot.getValue(Food.class);
-                    cartMap.put("name", food.getName());
-                    cartMap.put("price", food.getPrice());
-                    cartMap.put("rate", food.getRate());
-                    cartMap.put("Image", food.getImage());
+                    Product product = dataSnapshot.getValue(Product.class);
+                    cartMap.put("name", product.getName());
+                    cartMap.put("price", product.getPrice());
+                    cartMap.put("Image", product.getImage());
 
                     cartListRef.child("CartView")
                             .child(Prevalent.currentOnlineUser.getPhone())
-                            .child("Foods")
+                            .child("Products")
                             .child(sportId)
                             .updateChildren(cartMap)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -125,29 +110,27 @@ public class DetailSport extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
-    private void getFoodDetails(String foodId) {
-        DatabaseReference foodDetailsRef = FirebaseDatabase.getInstance().getReference().child("Foods");
-        foodDetailsRef.child(foodId).addValueEventListener(new ValueEventListener() {
+    private void getProductDetails(String productId) {
+        DatabaseReference productDetailsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        productDetailsRef.child(productId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Food food = snapshot.getValue(Food.class);
-                    fName.setText(food.getName());
-                    fDes.setText(food.getDescription());
-                    fPrice.setText(food.getPrice() + "$");
-                    Picasso.get().load(food.getImage()).into(fImg);
-                    fRate.setRating(Float.parseFloat(food.getRate()));
+                    Product product = snapshot.getValue(Product.class);
+                    fName.setText(product.getName());
+                    fDes.setText(product.getDescription());
+                    fPrice.setText(product.getPrice() + "$");
+                    Picasso.get().load(product.getImage()).into(fImg);
+                    fRate.setRating(Float.parseFloat(product.getRate()));
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

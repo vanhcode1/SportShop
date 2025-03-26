@@ -14,19 +14,19 @@ import com.example.sportshop.R;
 
 import org.jetbrains.annotations.NotNull;
 
-public class SportViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public TextView tvFoodName;
+public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public TextView tvProductName;
     public TextView tvPrice;
-    public ImageView imgFood;
+    public ImageView imgProduct;
     public RatingBar rate;
     public Button btn;
     private ItemClickListener itemClickListener;
 
-    public SportViewHolder(@NonNull @NotNull View itemView) {
+    public ProductViewHolder(@NonNull @NotNull View itemView) {
         super(itemView);
-        tvFoodName = itemView.findViewById(R.id.title);
+        tvProductName = itemView.findViewById(R.id.title);
         tvPrice = itemView.findViewById(R.id.fee);
-        imgFood = itemView.findViewById(R.id.pic);
+        imgProduct = itemView.findViewById(R.id.pic);
         rate = itemView.findViewById(R.id.ratingBar1);
         btn= itemView.findViewById(R.id.addBtn);
         itemView.setOnClickListener(this);

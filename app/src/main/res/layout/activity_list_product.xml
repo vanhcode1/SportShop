@@ -25,11 +25,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@color/teal_700"
                     app:layout_collapseMode="pin">
-                <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/logo"
-                        android:layout_centerHorizontal="true" tools:srcCompat="@drawable/deliveryman"/>
+
                 <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" android:background="@color/teal_700">
@@ -83,7 +79,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginRight="10dp"
-                    android:hint="What food you want to eat today?"
+                    android:hint="What are you searching for?"
                     android:focusable="false"
                     android:textColor="@color/black"
                     android:cursorVisible="false"
@@ -94,7 +90,7 @@
                     android:backgroundTint="#E8E8E8" android:textColorHint="#B1B1B1"/>
 
             <!-- Các biểu tượng danh mục -->
-            <!-- Danh sách sản phẩm thức ăn -->
+            <!-- Danh sách sản phẩm -->
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/categoryRecyclerView"
                     android:layout_width="match_parent"
@@ -112,7 +108,7 @@
                     android:layout_marginLeft="2dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
-                    tools:listitem="@layout/viewholder_popular"/>
+                    tools:listitem="@layout/viewholder_product"/>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

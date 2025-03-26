@@ -1,6 +1,6 @@
 package com.example.sportshop.Model;
 
-public class Sport {
+public class Product {
     private String Id;
     private String Name;
     private String Image;
@@ -10,7 +10,7 @@ public class Sport {
     private String Price;
     private String Rate;
 
-    public Sport() {
+    public Product() {
     }
 
     public String getId() {
@@ -21,7 +21,7 @@ public class Sport {
         Id = id;
     }
 
-    public Sport(String name, String image, String categoryId, String description, String discount, String price, String rate) {
+    public Product(String name, String image, String categoryId, String description, String discount, String price, String rate) {
         Name = name;
         Image = image;
         CategoryId = categoryId;
@@ -89,7 +89,7 @@ public class Sport {
 
     @Override
     public String toString() {
-        return "Food{" +
+        return "Product{" +
                 "Id='" + Id + '\'' +
                 ", Name='" + Name + '\'' +
                 ", Image='" + Image + '\'' +
