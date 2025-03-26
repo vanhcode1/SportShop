@@ -14,15 +14,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sportshop.Common.Common;
 import com.example.sportshop.Model.User;
-import com.google.firebase.database.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
-    /*TextView tvPhone ;
-    TextView tvName ;*/
     ImageView imgUser;
     EditText edtEmail;
     EditText edtPhone;
@@ -30,13 +32,11 @@ public class ProfileActivity extends AppCompatActivity {
     Button btnEdit;
     TextView tv_Order;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-           /* tvPhone = findViewById(R.id.tvPhone);
-            tvName = findViewById(R.id.tvNam);*/
+
             imgUser = findViewById(R.id.imgUser);
             edtEmail = findViewById(R.id.edtEmail);
             edtPhone = findViewById(R.id.edtPhone);
@@ -44,8 +44,6 @@ public class ProfileActivity extends AppCompatActivity {
             btnEdit = findViewById(R.id.btnEdit);
             tv_Order = findViewById(R.id.tvMyOrder);
             User user = Common.currentUser;
-            /*tvPhone.setText(user.getPhone());
-            tvName.setText(user.getName());*/
             edtEmail.setText(user.getEmail());
             edtPhone.setText(user.getPhone());
             edtName.setText(user.getName());
@@ -61,8 +59,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
     }
-
-
 
     public void onClickEdit(View view) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
