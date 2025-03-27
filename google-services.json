@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "302437586389",
+    "firebase_url": "https://group1-855b2-default-rtdb.firebaseio.com",
+    "project_id": "group1-855b2",
+    "storage_bucket": "group1-855b2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302437586389:android:bb46e369055ff54a2b595c",
+        "android_client_info": {
+          "package_name": "com.example.sportshop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302437586389-bkmls9p6bjlk27lvapr84qt50pc963o8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sportshop",
+            "certificate_hash": "a789e505c817a122ea906ea6eaa3d48b3a30ab18"
+          }
+        },
+        {
+          "client_id": "302437586389-7o1si2s0983mrje7srbab3eldm3segii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD26ZsKknx_UAvFsjcI9a3x70ysGBFef78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302437586389-5j2oc6nvho559oiv8qajhs8e8t5230o4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
