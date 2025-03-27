@@ -49,7 +49,7 @@
             android:layout_marginLeft="2dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/search_food_H"
-            tools:listitem="@layout/viewholder_popular"
+            tools:listitem="@layout/viewholder_product"
     />
 
 </RelativeLayout>

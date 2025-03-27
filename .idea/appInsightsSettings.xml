@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.example.holaorder" />
-                  <option name="mobileSdkAppId" value="1:15167446969:android:19c0b5e58b87b82f6ca068" />
-                  <option name="projectId" value="holaorder" />
-                  <option name="projectNumber" value="15167446969" />
+                  <option name="appId" value="com.example.sportshop" />
+                  <option name="mobileSdkAppId" value="1:302437586389:android:bb46e369055ff54a2b595c" />
+                  <option name="projectId" value="group1-855b2" />
+                  <option name="projectNumber" value="302437586389" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -21,16 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--            <me.relex.circleindicator.CircleIndicator-->
-            <!--                android:id="@+id/circleIndicator"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="30dp"-->
-            <!--                android:layout_marginBottom="8dp"-->
-            <!--                android:background="@color/overlayBackground"-->
-            <!--                app:layout_constraintBottom_toBottomOf="@id/viewPager"-->
-            <!--                app:layout_constraintEnd_toEndOf="@id/viewPager"-->
-            <!--                app:layout_constraintStart_toStartOf="@id/viewPager" />-->
-
             <ImageView
                 android:id="@+id/img_fDetail"
                 android:layout_width="394dp"
@@ -50,7 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@id/img_fDetail">
 
                 <TextView
-                    android:id="@+id/txtFoodName"
+                    android:id="@+id/txtProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -71,7 +61,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     android:background="@color/teal_700"
-                    app:layout_constraintTop_toBottomOf="@id/txtFoodName">
+                    app:layout_constraintTop_toBottomOf="@id/txtProductName">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -82,6 +72,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rate"
+                            android:visibility="invisible"
+
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -92,6 +84,8 @@
                             android:background="@drawable/radius_view"
                             android:numStars="5"
                             android:rating="5"
+                            android:visibility="invisible"
+
                             android:scaleX="0.4"
                             android:scaleY="0.4"
                             app:layout_wrapBehaviorInParent="skipped" />
@@ -192,41 +186,9 @@
                     app:layout_constraintTop_toBottomOf="@id/txtDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!--            <ImageView-->
-            <!--                android:id="@+id/btnBack"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="16dp"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:background="@drawable/icon_back"-->
-            <!--                app:layout_constraintStart_toStartOf="parent"-->
-            <!--                app:layout_constraintTop_toTopOf="parent" />-->
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/btnAddToCart"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="50dp"-->
-    <!--        android:layout_marginBottom="5dp"-->
-    <!--        android:background="@drawable/radius_view"-->
-    <!--        android:clickable="true"-->
-    <!--        android:focusable="true"-->
-    <!--        android:gravity="center"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent">-->
-
-    <!--        <TextView-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:fontFamily="@font/google_sans_bold"-->
-    <!--            android:text="Add to Cart"-->
-    <!--            android:textColor="@color/black"-->
-    <!--            android:textSize="18sp" />-->
-    <!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

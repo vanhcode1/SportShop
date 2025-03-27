@@ -37,7 +37,7 @@
         android:layout_width="369dp"
         android:layout_height="55dp"
         android:layout_marginTop="22dp"
-        android:text="Experience the best services at HolaOrder"
+        android:text="Experience the best services at Sport Shop"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -144,20 +144,6 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
-
-    <Button
-        android:id="@+id/btn_seller_SI"
-        android:layout_width="330dp"
-        android:layout_height="62dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_black"
-        android:text="Wants to become a Seller"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@+id/view"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signin"
-        app:layout_constraintVertical_bias="0.5" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
