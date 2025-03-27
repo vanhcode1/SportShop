@@ -18,16 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportshop.Common.Common;
 import com.example.sportshop.Interface.ItemClickListener;
-import com.example.sportshop.Model.Category;
 import com.example.sportshop.Model.Product;
 import com.example.sportshop.Model.User;
 import com.example.sportshop.Prevalent.Prevalent;
-import com.example.sportshop.ViewHolder.CategoryViewHolder;
 import com.example.sportshop.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -42,8 +39,7 @@ import java.util.HashMap;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListProduct extends AppCompatActivity {
-    RecyclerView recyclerViewCategory, recyclerViewProduct;
-    DatabaseReference table_category;
+    RecyclerView recyclerViewProduct;
     DatabaseReference table_product;
     NavigationView navigationView;
     CircleImageView imgUser;
@@ -59,19 +55,13 @@ public class ListProduct extends AppCompatActivity {
         setContentView(R.layout.activity_list_product);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        table_category = database.getReference("Category");
         table_product = database.getReference("Products");
-        recyclerViewCategory = (RecyclerView) findViewById(R.id.categoryRecyclerView);
-        recyclerViewCategory.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewCategory.setLayoutManager(layoutManager);
         recyclerViewProduct = (RecyclerView) findViewById(R.id.productRecyclerView);
         GridLayoutManager layoutManagerGrid = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
         recyclerViewProduct.setLayoutManager(layoutManagerGrid);
         ((TextView) findViewById(R.id.tvHelloUser)).setText(Common.currentUser.getName());
 
-        loadCategory();
-        loadProduct("");
+        loadProduct();
         NavSettup();
 
         searchView = findViewById(R.id.searchView);
@@ -86,51 +76,11 @@ public class ListProduct extends AppCompatActivity {
         });
     }
 
-    private void loadCategory() {
-        FirebaseRecyclerOptions<Category> options =
-                new FirebaseRecyclerOptions.Builder<Category>()
-                        .setQuery(table_category, Category.class)
-                        .build();
-
-        FirebaseRecyclerAdapter<Category, CategoryViewHolder> adapter
-                = new FirebaseRecyclerAdapter<Category, CategoryViewHolder>(options) {
-            @NonNull
-            @Override
-            public CategoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent,false);
-                CategoryViewHolder holder = new CategoryViewHolder(view);
-                return holder;
-            }
-
-            @Override
-            protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int position, @NonNull Category category) {
-                categoryViewHolder.tvCategoryName.setText(category.getName());
-                Picasso.get().load(category.getImage()).into(categoryViewHolder.imgCategory);
-                Category clickItem = category;
-                categoryViewHolder.setItemClickListener(new ItemClickListener() {
-                    @Override
-                    public void onClick(View view, int position, boolean isLongClick) {
-                        // Lấy danh mục được click
-                        String selectedCategory = category.getName();
-                        // Gọi phương thức loadProduct() với danh mục đã chọn hoặc rỗng
-                        loadProduct(selectedCategory.isEmpty() ? "" : selectedCategory);
-                        Toast.makeText(ListProduct.this, clickItem.getName(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        };
-        recyclerViewCategory.setAdapter(adapter);
-        adapter.startListening();
-    }
-
-    private void loadProduct(String category) {
+    private void loadProduct() {
         Query query;
 
-        if (category.isEmpty()) {
-            query = table_product;
-        } else {
-            query = table_product.orderByChild("CategoryId").equalTo(category);
-        }
+        query = table_product;
+
         FirebaseRecyclerOptions<Product> options =
                 new FirebaseRecyclerOptions.Builder<Product>()
                         .setQuery(query, Product.class)
@@ -140,7 +90,7 @@ public class ListProduct extends AppCompatActivity {
             @NonNull
             @Override
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_product, parent,false);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_product, parent, false);
                 ProductViewHolder holder = new ProductViewHolder(view);
                 return holder;
             }
@@ -174,10 +124,10 @@ public class ListProduct extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         final HashMap<String, Object> cartMap = new HashMap<>();
-                        cartMap.put("ProductId",productId);
+                        cartMap.put("ProductId", productId);
                         cartMap.put("name", productViewHolder.tvProductName.getText().toString());
                         cartMap.put("price", productViewHolder.tvPrice.getText().toString());
-                        cartMap.put("Image",  product.getImage());
+                        cartMap.put("Image", product.getImage());
                     }
                 });
             }
@@ -201,6 +151,7 @@ public class ListProduct extends AppCompatActivity {
 
         findViewById(R.id.img_menu).setOnClickListener(v -> ShowNavigationBar());
     }
+
     private void ShowNavigationBar() {
         findViewById(R.id.img_menu).setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.END));
     }
@@ -210,14 +161,21 @@ public class ListProduct extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    public void changePass(MenuItem item) {
+        Intent intent = new Intent(this, ChangePasswordAct.class);
+        startActivity(intent);
+    }
 
     public void viewCart(MenuItem item) {
         Intent intent = new Intent(this, CartActivity.class);
         startActivity(intent);
     }
 
-
+    public void clickLogout(MenuItem item) {
+        Prevalent.currentOnlineUser = null;
+        Intent intent = new Intent(this, SignIn.class);
+        startActivity(intent);
+    }
 
     public void listProducts(MenuItem item) {
         Intent intent = new Intent(this, ListProduct.class);

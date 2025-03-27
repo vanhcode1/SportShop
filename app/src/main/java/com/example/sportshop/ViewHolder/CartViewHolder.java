@@ -7,22 +7,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.holaorder.Interface.ItemClickListener;
-import com.example.holaorder.R;
+import com.example.sportshop.Interface.ItemClickListener;
+import com.example.sportshop.R;
 
 import org.jetbrains.annotations.NotNull;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public ImageView imgFood;
-    public TextView tvFoodName;
+    public ImageView imgProduct;
+    public TextView tvProductName;
     public TextView tvPrice;
     public TextView tvQuantity;
     private ItemClickListener itemClickListener;
 
     public CartViewHolder(@NonNull @NotNull View itemView) {
         super(itemView);
-        imgFood = itemView.findViewById(R.id.img_C);
-        tvFoodName = itemView.findViewById(R.id.nameFood_C);
+        imgProduct = itemView.findViewById(R.id.img_C);
+        tvProductName = itemView.findViewById(R.id.nameProduct_C);
         tvPrice = itemView.findViewById(R.id.price_C);
         tvQuantity = itemView.findViewById(R.id.quantity_C);
         itemView.setOnClickListener(this);

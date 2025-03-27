@@ -40,6 +40,7 @@
                 app:layout_constraintTop_toBottomOf="@id/img_fDetail">
 
                 <TextView
+                    android:id="@+id/txtProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
@@ -60,6 +61,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     android:background="@color/teal_700"
+                    app:layout_constraintTop_toBottomOf="@id/txtProductName">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -70,6 +72,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Rate"
+                            android:visibility="invisible"
+
                             android:textColor="@color/white"
                             android:textSize="20sp" />
 
@@ -80,6 +84,8 @@
                             android:background="@drawable/radius_view"
                             android:numStars="5"
                             android:rating="5"
+                            android:visibility="invisible"
+
                             android:scaleX="0.4"
                             android:scaleY="0.4"
                             app:layout_wrapBehaviorInParent="skipped" />
