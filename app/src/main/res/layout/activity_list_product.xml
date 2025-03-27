@@ -91,14 +91,7 @@
 
             <!-- Các biểu tượng danh mục -->
             <!-- Danh sách sản phẩm -->
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/categoryRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:listitem="@layout/viewholder_category" />
+
 
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/productRecyclerView"
